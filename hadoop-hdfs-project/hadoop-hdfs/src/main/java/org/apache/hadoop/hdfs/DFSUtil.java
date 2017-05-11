@@ -109,10 +109,13 @@ public class DFSUtil {
 
   /** Shuffle the elements in the given array. */
   public static <T> T[] shuffle(final T[] array) {
-    if (array != null && array.length > 0) {
-      for (int n = array.length; n > 1; ) {
-        final int randomIndex = ThreadLocalRandom.current().nextInt(n);
-        n--;
+    if (array != null && 1 < array.length) {
+      for (int n = array.length - 1; 0 < n; n--) {
+        /**
+          Ref: http://gee.cs.oswego.edu/dl/jsr166/dist/docs/java/util/concurrent/ThreadLocalRandom.html#nextInt--
+          Que: why do we need final/const var here? Will be any issues if not?
+         **/
+        final int randomIndex = ThreadLocalRandom.current().nextInt(n + 1);
         if (n != randomIndex) {
           final T tmp = array[randomIndex];
           array[randomIndex] = array[n];
