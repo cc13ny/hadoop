@@ -108,9 +108,17 @@ public class DFSUtil {
   }
 
   /** Shuffle the elements in the given array. */
+  
+  /**
+    Think about why it works before taking a look at the folllowing links
+    
+    - http://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
+    - https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+    - https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
+   **/
   public static <T> T[] shuffle(final T[] array) {
     if (array != null && array.length > 1) {
-      for (int n = array.length; n > 1;) {
+      for (int n = array.length; n > 1; ) {
         /**
           Ref: http://gee.cs.oswego.edu/dl/jsr166/dist/docs/java/util/concurrent/ThreadLocalRandom.html#nextInt--
           Que: why do we need final/const var here? Will be any issues if not?
